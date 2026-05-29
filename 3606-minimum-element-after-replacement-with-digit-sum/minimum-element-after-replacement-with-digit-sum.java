@@ -1,15 +1,15 @@
 class Solution {
     public int minElement(int[] nums) {
-        for(int i = 0; i < nums.length; i++){
-            int n = nums[i];
+        int min = Integer.MAX_VALUE;
+        for(int num : nums){
             int sum = 0;
-            for(int j = n; j > 0; j/=10){
-                int d = j % 10;
-                sum += d;
+            while(num > 0){
+                int rem = num % 10;
+                sum = sum + rem;
+                num = num / 10;
             }
-            nums[i] = sum;
+            min = Math.min(sum, min);
         }
-        Arrays.sort(nums);
-        return nums[0];
+        return min;
     }
 }
